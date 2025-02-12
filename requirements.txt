@@ -11,3 +11,4 @@ streamlit
 statsmodels
 tqdm
 joblib
+-e .
