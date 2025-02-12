@@ -64,14 +64,28 @@ class DataTransformation:
             preprocessor_obj = self.get_preprocessor_object()
 
             logging.info('Apply preprocessor on the train and test sets')
-            train = preprocessor_obj.fit_transform(train_df)
-            test = preprocessor_obj.transform(test_df)
+            train_data = preprocessor_obj.fit_transform(train_df)
+            test_data = preprocessor_obj.transform(test_df)
             logging.info("Data transformation complete")
 
             save_object(
                 file_path=self.data_transformation_config.transformation_obj_path,
                 obj=preprocessor_obj)
             
+            cat_cols = ['job','marital','education','default','housing','loan','contact','poutcome','deposit']
+            num_cols = ['balance', 'duration', 'campaign', 'previous']
+
+            column_names = (num_cols + list(preprocessor_obj.named_transformers_['cat'].named_steps['encoder'].get_feature_names_out(cat_cols))+['month'])
+            train = pd.DataFrame(train_data, columns=column_names, index=train_df.index)
+            test = pd.DataFrame(test_data, columns=column_names, index=test_df.index)
+
+            significant_features = pd.read_csv('notebook/significant_features.csv')
+            significant_features = significant_features['features']
+            
+            logging.info('Retaining the significant features from the train and test sets')
+            train = train[significant_features]
+            test = test[significant_features]
+
             return (
                 train,
                 test
