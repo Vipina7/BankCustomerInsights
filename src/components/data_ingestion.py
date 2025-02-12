@@ -4,6 +4,7 @@ from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
 from src.components.dimensionality_reduction import DimensionReductionConfig, DimensionReduction
+from src.components.cluster import ClusterRetreiver
 from dataclasses import dataclass
 
 import pandas as pd
@@ -53,4 +54,8 @@ if __name__ == "__main__":
     train, test = transform_obj.initiate_data_transformation(train_path=train_path, test_path=test_path)
 
     pca_obj = DimensionReduction()
-    pca_obj.get_pca_model(train_data=train, test_data=test)
+    pca_train_data, pca_test_data = pca_obj.get_pca_model(train_data=train, test_data=test)
+
+    cluster_obj = ClusterRetreiver()
+    res = cluster_obj.get_best_cluster(pca_data_train=pca_train_data, pca_data_test=pca_test_data)
+    print(res)

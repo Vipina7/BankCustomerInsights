@@ -33,8 +33,12 @@ def kmeans_cluster(ran:list, data):
     try:
         kmeans_silhouette = {}
         for k in ran:
+            logging.info('Initiating the KMeans model')
             kmeans = KMeans(n_clusters=k, random_state=42)
+            
             kmeans_labels = kmeans.fit_predict(data)
+            logging.info('Prediction of KMeans labels succesful')
+
             kmeans_silhouette[k] = silhouette_score(data, kmeans_labels)
 
         return (
@@ -47,8 +51,12 @@ def agglo_cluster(ran:list, data):
     try:
         agglo_silhouette = {}
         for k in ran:
+            logging.info('Initiating the Agglomerative cluster model')
             agglo = AgglomerativeClustering(n_clusters=k, affinity='cosine', linkage='average')
+            
             agglo_labels = agglo.fit_predict(data)
+            logging.info('Prediction of Agglomerative cluster labels succesful')
+
             agglo_silhouette[k] = silhouette_score(data, agglo_labels)
     
         return (
@@ -62,8 +70,10 @@ def db_cluster(eps_values, data):
         db_silhouette = {}
         
         for eps in eps_values:
+            logging.info('Initiating the DBSCAN model')
             db = DBSCAN(eps = eps, min_samples=5)
             db_labels = db.fit_predict(data)
+            logging.info('Prediction of DBSCAN labels succesful')
 
             if len(set(db_labels)) > 1:
                 db_silhouette[eps] = silhouette_score(data, db_labels)
