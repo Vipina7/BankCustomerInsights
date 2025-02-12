@@ -3,6 +3,7 @@ import sys
 from src.exception import CustomException
 from src.logger import logging
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
+from src.components.dimensionality_reduction import DimensionReductionConfig, DimensionReduction
 from dataclasses import dataclass
 
 import pandas as pd
@@ -50,4 +51,6 @@ if __name__ == "__main__":
 
     transform_obj = DataTransformation()
     train, test = transform_obj.initiate_data_transformation(train_path=train_path, test_path=test_path)
-    print(train[:5,:])
+
+    pca_obj = DimensionReduction()
+    pca_obj.get_pca_model(train_data=train, test_data=test)
