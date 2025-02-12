@@ -17,6 +17,7 @@ class PredictPipeline:
             pca_path = 'artifacts/pca.pkl'
 
             significant_features = pd.read_csv('notebook\significant_features.csv')
+            significant_features = significant_features['features']
             logging.info('Obtaining the significant features')
 
             model = load_object(file_path=model_path)
@@ -28,7 +29,7 @@ class PredictPipeline:
 
             scaled_features = preprocessor.transform(features)
             column_names = (num_cols + list(preprocessor.named_transformers_['cat'].named_steps['encoder'].get_feature_names_out(cat_cols))+['month'])
-            scaled_df = pd.DataFrame(scaled_df, columns=column_names)
+            scaled_df = pd.DataFrame(scaled_features, columns=column_names)
             scaled_df = scaled_df[significant_features]
 
 
@@ -57,8 +58,7 @@ class CustomData:
                  loan, 
                  contact, 
                  poutcome, 
-                 month, 
-                 deposit):
+                 month):
         
         self.balance = balance
         self.duration = duration
@@ -93,7 +93,7 @@ class CustomData:
             }
             logging.info("Dataframe ready for prediction")
 
-            return pd.DataFrame([custom_data_input_dict])
+            return pd.DataFrame(custom_data_input_dict)
         
         except Exception as e:
             logging.error(f"Error occurred: {e}")
