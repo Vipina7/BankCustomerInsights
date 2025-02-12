@@ -19,7 +19,7 @@ class DataTransformation:
 
     def get_preprocessor_object(self):
         try:
-            cat_cols = ['job','marital','education','default','housing','loan','contact','poutcome','deposit']
+            cat_cols = ['job','marital','education','default','housing','loan','contact','poutcome']
             num_cols = ['balance', 'duration', 'campaign', 'previous']
 
             month_order = {'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 
@@ -72,7 +72,7 @@ class DataTransformation:
                 file_path=self.data_transformation_config.transformation_obj_path,
                 obj=preprocessor_obj)
             
-            cat_cols = ['job','marital','education','default','housing','loan','contact','poutcome','deposit']
+            cat_cols = ['job','marital','education','default','housing','loan','contact','poutcome']
             num_cols = ['balance', 'duration', 'campaign', 'previous']
 
             column_names = (num_cols + list(preprocessor_obj.named_transformers_['cat'].named_steps['encoder'].get_feature_names_out(cat_cols))+['month'])

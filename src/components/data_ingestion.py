@@ -29,7 +29,7 @@ class DataIngestion:
             os.makedirs(os.path.dirname(self.data_ingestion_config.train_data_path), exist_ok=True)
             logging.info('Artifacts folder created')
 
-            df = df.drop(columns=['age','day', 'pdays'], axis=1)
+            df = df.drop(columns=['age','day', 'pdays', 'deposit'], axis=1)
             logging.info('Dropping the necessary columns')
 
             logging.info("Train test split initiated")
