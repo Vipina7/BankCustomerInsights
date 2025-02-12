@@ -5,6 +5,7 @@ from src.logger import logging
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
 from src.components.dimensionality_reduction import DimensionReductionConfig, DimensionReduction
 from src.components.cluster import ClusterRetreiver
+from src.components.model_trainer import ModelTrainerConfig, ModelTrainer
 from dataclasses import dataclass
 
 import pandas as pd
@@ -58,4 +59,10 @@ if __name__ == "__main__":
 
     cluster_obj = ClusterRetreiver()
     res = cluster_obj.get_best_cluster(pca_data_train=pca_train_data, pca_data_test=pca_test_data)
-    print(res)
+    
+    model_obj = ModelTrainer()
+    model_obj.get_trained_model(scaled_data_train=pca_train_data,
+                                scaled_data_test=pca_test_data,
+                                train=train,
+                                test=test)
+    
