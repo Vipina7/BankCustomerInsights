@@ -53,7 +53,7 @@ if st.button("Predict Cluster"):
         prediction = predict_pipeline.predict(pred_df)
 
         if prediction == 0:
-            st.subheader("📊 Customer belongs to Cluster 1/2:")
+            st.subheader("📊 Customer belongs to 'Stable Savers with Loans' cluster:")
             st.write("- Customers in this cluster have **lower engagement** and a **lower likelihood of subscribing** (~45%).")
             st.write("- **Key Factors Influencing Deposits:**")
             st.write(f"  - 📞 **Call Duration:** Longer calls (>483s) improve engagement.")
@@ -72,7 +72,7 @@ if st.button("Predict Cluster"):
             st.balloons()
 
         elif prediction == 1:
-            st.subheader("📊 Customer belongs to Cluster 2/2:")
+            st.subheader("📊 Customer belongs to 'High-Balance Professionals' clusters:")
             st.write("- Customers in this cluster are **highly engaged** and have a **higher likelihood of subscribing** (~50%).")
             st.write("- **Key Factors Influencing Deposits:**")
             st.write(f"  - 📞 **Call Duration:** Longer calls (>506s) significantly boost deposit rates.")
