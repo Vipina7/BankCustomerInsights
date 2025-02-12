@@ -27,7 +27,6 @@ class DimensionReduction:
                 file_path= self.dimension_reduction_config.pca_model_path,
                 obj = pca
             )
-            logging.info('Dimension Reduction model saved successfully')
             
             return (
                 pca_train_data,

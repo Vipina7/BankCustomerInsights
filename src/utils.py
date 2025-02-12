@@ -14,7 +14,7 @@ def save_object(file_path, obj):
 
         with open(file_path, "wb") as file_obj:
             pickle.dump(obj, file_obj)
-        logging.info("Saved preprocessing object")
+        logging.info(f"Saved the model successfully")
 
     except Exception as e:
         raise CustomException(e, sys)
