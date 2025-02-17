@@ -59,7 +59,7 @@ The dataset used for training contains the following attributes:
 
 - **Numerical Features:** Age, Annual Income, Account Balance, Monthly Transactions, Credit Score
 - **Categorical Features:** Employment Type, Marital Status
-- **Target Variable:** Customer Segments (e.g., "High-Value Customers", "Average Spenders", "Low-Engagement Customers")
+- **Target Variable:** Customer Segments (e.g., "Stable Savers with Loans", "High-Balance Professionals")
 
 ## 🔍 Model and Preprocessing
 
@@ -69,8 +69,8 @@ The dataset used for training contains the following attributes:
   - Standardized numerical features using **StandardScaler**.
 - **Model Training:**
   - Evaluated multiple clustering algorithms, including **K-Means, DBSCAN, Agglomerative Clustering**.
-  - Selected the best-performing model based on **Silhouette Score and Davies-Bouldin Index**.
-  - **Final Model:** K-Means with optimized cluster count using **Elbow Method & Silhouette Analysis**.
+  - Selected the best-performing model based on **Silhouette Score**.
+  - **Final Model:** K-Means with optimized cluster count using **Silhouette Analysis**.
 
 ## 🌟 Example Output
 
